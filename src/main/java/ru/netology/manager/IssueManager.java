@@ -4,9 +4,7 @@ import ru.netology.domain.Issue;
 import ru.netology.domain.NotFoundException;
 import ru.netology.repository.IssueRepository;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 public class IssueManager {
     private IssueRepository repository;
@@ -85,6 +83,12 @@ public class IssueManager {
         } else {
             foundIssue.setOpen(true);
         }
+    }
+
+    public Collection<Issue> sortByCreateDaysAgo(){
+        List<Issue> result = new ArrayList<>(repository.getAll());
+        Collections.sort(result);
+        return result;
     }
 
 }

@@ -235,9 +235,16 @@ class CRUDIssueManagerTest {
         }
 
         @Test
-        void updateWhenNotExist() {
+        void shouldUpdateWhenNotExist() {
 
             Assertions.assertThrows(NotFoundException.class, () -> manager.updateIssue(7));
+        }
+
+        @Test
+        void shouldSortByCreateDaysAgo(){
+            Collection<Issue> expected = List.of(issue1, issue2, issue4, issue6, issue3, issue5);
+            Collection<Issue> actual = manager.sortByCreateDaysAgo();
+            Assertions.assertIterableEquals(expected,actual);
         }
     }
     }
